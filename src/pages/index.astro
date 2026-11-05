@@ -1,0 +1,31 @@
+---
+import '@earendil-works/design-tokens/earendil.css';
+import '@earendil-works/elanor-fonts/mallos-serif.css';
+import '@earendil-works/elanor-react/elanor.min.css';
+import '../styles/site.css';
+
+import {ProjectList} from '../components/project-list.tsx';
+
+const title = 'Earendil open source';
+const description = 'Open source projects by Earendil, with links to their code and documentation.';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <style is:inline>
+      @layer elanor, base, components;
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.site} />
+  </head>
+  <body>
+    <ProjectList />
+  </body>
+</html>

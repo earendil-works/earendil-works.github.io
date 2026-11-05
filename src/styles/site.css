@@ -1,0 +1,38 @@
+/* Elanor's styles live in the `elanor` layer; site styles come after it. */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    background: var(--semantic-color-background-canvas);
+    color: var(--semantic-color-text-primary);
+  }
+}
+
+@layer components {
+  main {
+    padding-block: var(--semantic-dimension-space-padding-x-large);
+  }
+
+  .project-card {
+    block-size: 100%;
+    border: var(--semantic-dimension-border-width-default) solid
+      var(--semantic-color-border-secondary);
+    border-radius: var(--semantic-dimension-radius-medium);
+  }
+
+  .project-description {
+    flex-grow: 1;
+    color: var(--semantic-color-text-secondary);
+  }
+
+  .footer {
+    padding-block: var(--semantic-dimension-space-padding-large);
+    color: var(--semantic-color-text-secondary);
+    font: var(--semantic-typography-ui-secondary);
+  }
+}
