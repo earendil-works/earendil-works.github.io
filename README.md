@@ -21,6 +21,9 @@ npm run check   # type check
 npm run build   # static site in dist/
 ```
 
+Or use the Makefile: `make serve`, `make check`, `make build`, `make preview`,
+`make clean`.
+
 Pushes to `main` deploy to GitHub Pages through
 [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml). In the
 repository settings, set Pages' source to "GitHub Actions".
