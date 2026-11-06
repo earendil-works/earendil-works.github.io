@@ -1,4 +1,5 @@
-/* Elanor's styles live in the `elanor` layer; site styles come after it. */
+/* Elanor's styles live in the `elanor` layer; site styles come after it.
+   The page follows the layout of https://radius.earendil.com/. */
 @layer base {
   *,
   *::before,
@@ -14,25 +15,160 @@
 }
 
 @layer components {
-  main {
-    padding-block: var(--semantic-dimension-space-padding-x-large);
-  }
+  /* Header */
 
-  .project-card {
-    block-size: 100%;
-    border: var(--semantic-dimension-border-width-default) solid
+  .header {
+    border-block-end: var(--semantic-dimension-border-width-small) solid
       var(--semantic-color-border-secondary);
-    border-radius: var(--semantic-dimension-radius-medium);
   }
 
-  .project-description {
-    flex-grow: 1;
+  .header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--semantic-dimension-space-gap-medium);
+  }
+
+  .identity {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--semantic-dimension-space-gap-small);
+    color: var(--semantic-color-text-primary);
+    text-decoration: none;
+  }
+
+  .identity:focus-visible {
+    outline: var(--semantic-dimension-border-width-focus-ring) solid
+      var(--semantic-color-focus-ring);
+    outline-offset: var(--semantic-dimension-border-width-large);
+  }
+
+  .wordmark {
+    font: var(--semantic-typography-heading-marketing-5);
+  }
+
+  /* Page */
+
+  .page {
+    display: grid;
+    row-gap: var(--semantic-dimension-space-gap-x-large);
+    padding-block: var(--semantic-dimension-space-padding-xx-large)
+      var(--semantic-dimension-space-padding-xxxx-large);
+  }
+
+  .intro {
+    display: grid;
+    align-content: start;
+    row-gap: var(--semantic-dimension-space-gap-x-large);
+  }
+
+  .lead-in {
+    font-style: italic;
+    font-variant-caps: small-caps;
+  }
+
+  /* Project list */
+
+  .projects {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-block-start: var(--semantic-dimension-border-width-small) solid
+      var(--semantic-color-border-secondary);
+  }
+
+  .project {
+    position: relative;
+    display: grid;
+    row-gap: var(--semantic-dimension-space-gap-xx-small);
+    padding-block: var(--semantic-dimension-space-padding-x-large);
+    border-block-end: var(--semantic-dimension-border-width-small) solid
+      var(--semantic-color-border-secondary);
+  }
+
+  .project-link {
+    color: inherit;
+    text-decoration-line: underline;
+    text-decoration-color: var(--semantic-color-border-primary);
+    text-decoration-thickness: var(--semantic-dimension-border-width-small);
+    text-underline-position: from-font;
+  }
+
+  /* The heading link covers the whole row. */
+  .project-link::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+  }
+
+  .project-link:focus-visible {
+    outline: none;
+  }
+
+  .project:has(.project-link:focus-visible) {
+    outline: var(--semantic-dimension-border-width-focus-ring) solid
+      var(--semantic-color-focus-ring);
+    outline-offset: var(--semantic-dimension-border-width-large);
+  }
+
+  @media (hover: hover) {
+    .project:hover .project-link {
+      text-decoration-color: currentColor;
+    }
+  }
+
+  .project-summary {
     color: var(--semantic-color-text-secondary);
   }
+
+  /* Secondary links sit above the row-covering heading link. */
+  .project-meta {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--semantic-dimension-space-gap-large);
+    margin-block-start: var(--semantic-dimension-space-gap-x-small);
+    justify-self: start;
+    font: var(--semantic-typography-ui-secondary);
+  }
+
+  /* Footer */
 
   .footer {
-    padding-block: var(--semantic-dimension-space-padding-large);
-    color: var(--semantic-color-text-secondary);
-    font: var(--semantic-typography-ui-secondary);
+    border-block-start: var(--semantic-dimension-border-width-small) solid
+      var(--semantic-color-border-secondary);
+  }
+
+  .footer-content {
+    padding-block: var(--semantic-dimension-space-padding-xxx-large);
+  }
+
+  .footer-links {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--semantic-dimension-space-gap-large);
+  }
+
+  @media (min-width: 64rem) {
+    .page {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      column-gap: var(--semantic-dimension-space-padding-xxxx-large);
+      padding-block-start: var(--semantic-dimension-space-padding-xxxx-large);
+    }
+
+    .intro {
+      position: sticky;
+      inset-block-start: var(--semantic-dimension-space-padding-xxxx-large);
+      align-self: start;
+    }
+  }
+
+  @media (forced-colors: active) {
+    .identity:focus-visible,
+    .project:has(.project-link:focus-visible) {
+      outline-color: Highlight;
+    }
   }
 }
